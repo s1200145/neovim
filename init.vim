@@ -5,6 +5,8 @@ set tabstop=3
 set shiftwidth=3
 set expandtab
 set autoindent
+set autoread
+set virtualedit=block
 set smartindent
 set noswapfile
 set number
@@ -18,6 +20,7 @@ set laststatus=2
 set title
 set wildmenu
 set showcmd
+set paste
 set whichwrap=b,s,h,l,<,>,[,]
 set clipboard=unnamed,unnamedplus
 set imdisable
@@ -78,7 +81,6 @@ let g:deoplete#enable_refresh_always = 0
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#max_list = 10000
-set completeopt+=noinsert
 inoremap <expr><tab> pumvisible() ? "\<C-n>" :
    \ neosnippet#expandable_or_jumpable() ?
    \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
@@ -117,6 +119,7 @@ filetype plugin indent on
 syntax enable
 syntax on
 
+set completeopt+=noinsert,noselect
 set encoding=utf-8
 set fileencodings=utf-8
 set fileformats=unix,dos,mac
