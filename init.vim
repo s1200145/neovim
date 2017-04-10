@@ -27,6 +27,8 @@ set imdisable
 if &compatible
    set nocompatible
 endif
+" display filepath of current file
+set statusline=%F%m%r%h%w%=\ %{fugitive#statusline()}\ [%{&ff}:%{&fileencoding}]\ [%Y]\ [%04l,%04v]\ [%l/%L]\ %{strftime(\"%Y/%m/%d\ %H:%M:%S\")}
 
 " config for clipboard
 nnoremap <Space>d "*dd
@@ -40,6 +42,8 @@ inoremap { {}<LefT>
 inoremap {<Enter> {}<Left><CR><ESC><S-o>
 inoremap ( ()<ESCi
 inoremap (<Enter> ()<Left><CR><ESC><S-o>
+
+nmap <F1> :tabnew $MYVIMRC<CR>
 
 let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
