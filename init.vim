@@ -70,24 +70,8 @@ endif
 " config
 let g:python3_host_prog = '/usr/bin/python3'
 
-" " deoplete.nvim
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_delay = 0
-let g:deoplete#auto_complete_start_length = 1
-let g:deoplete#enable_camel_case = 0
-let g:deoplete#enable_ignore_case = 0
-let g:deoplete#enable_refresh_always = 0
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#file#enable_buffer_path = 1
-let g:deoplete#max_list = 10000
-inoremap <expr><tab> pumvisible() ? "\<C-n>" :
-   \ neosnippet#expandable_or_jumpable() ?
-   \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
-
 " jedi-vim
-let g:deoplete#sources#jedi#stament_length = 50
-let g:deoplete#sources#jedi#enable_cache = 1
-let g:deoplete#sources#jedi#show_docstring = 0
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " caw.vim
 nmap <Leader>c <Plug>(caw:hatpos:toggle)
@@ -111,37 +95,33 @@ let g:EasyMotion_space_jump_first = 1
 hi EasyMotionTarget guifg=#ffff00 ctermfg=81
 
 "smartchr
-" 演算子の間に空白を入れる
 inoremap <buffer><expr> < search('^#include\%#', 'bcn')? ' <': smartchr#one_of(' < ', ' << ', '<')
 inoremap <buffer><expr> > search('^#include <.*\%#', 'bcn')? '>': smartchr#one_of(' > ', ' >> ', '>')
 inoremap <buffer><expr> + smartchr#one_of(' + ', '++', '+')
 inoremap <buffer><expr> - smartchr#one_of(' - ', '--', '-')
 inoremap <buffer><expr> / smartchr#one_of(' / ', '// ', '/')
-" *はポインタで使うので、空白はいれない
+
 inoremap <buffer><expr> & smartchr#one_of(' & ', ' && ', '&')
 inoremap <buffer><expr> % smartchr#one_of(' % ', '%')
 inoremap <buffer><expr> <Bar> smartchr#one_of(' <Bar> ', ' <Bar><Bar> ', '<Bar>')
 inoremap <buffer><expr> , smartchr#one_of(', ', ',')
-" 3項演算子の場合は、後ろのみ空白を入れる
+
 inoremap <buffer><expr> ? smartchr#one_of('? ', '?')
 inoremap <buffer><expr> : smartchr#one_of(': ', '::', ':')
 
-" =の場合、単純な代入や比較演算子として入力する場合は前後にスペースをいれる。
-" 複合演算代入としての入力の場合は、直前のスペースを削除して=を入力
 inoremap <buffer><expr> = search('\(&\<bar><bar>\<bar>+\<bar>-\<bar>/\<bar>>\<bar><\) \%#', 'bcn')? '<bs>= '
          \ : search('\(*\<bar>!\)\%#', 'bcn') ? '= '
          \ : smartchr#one_of(' = ', ' == ', '=')
 
-" 下記の文字は連続して現れることがまれなので、二回続けて入力したら改行する
 inoremap <buffer><expr> } smartchr#one_of('}', '}<cr>')
 inoremap <buffer><expr> ; smartchr#one_of(';', ';<cr>')
-" 「->」は入力しづらいので、..で置換え
+
 inoremap <buffer><expr> . smartchr#loop('.', '->', '...')
-" 行先頭での@入力で、プリプロセス命令文を入力
+
 inoremap <buffer><expr> @ search('^\(#.\+\)\?\%#','bcn')? smartchr#one_of('#define', '#include', '#ifdef', '#endif', '@'): '@'
 
 inoremap <buffer><expr> " search('^#include\%#', 'bcn')? ' "': '"'
-" if文直後の(は自動で間に空白を入れる
+
 inoremap <buffer><expr> ( search('\<\if\%#', 'bcn')? ' (': '('
 
 " rust
@@ -164,6 +144,8 @@ syntax enable
 syntax on
 
 set completeopt+=noinsert,noselect
+set completeopt-=preview
+
 set encoding=utf-8
 set fileencodings=utf-8
 set fileformats=unix,dos,mac
