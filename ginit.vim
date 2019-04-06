@@ -1,9 +1,7 @@
 filetype off
 filetype plugin indent off
-" config for default setting
 
 set expandtab
-set number
 set relativenumber
 set tabstop=3
 set shiftwidth=3
@@ -12,6 +10,7 @@ set autoread
 set virtualedit=block
 set smartindent
 set noswapfile
+set number
 set hlsearch
 set background=dark
 set hidden
@@ -24,7 +23,13 @@ set cursorline
 set cursorcolumn
 set whichwrap=b,s,h,l,<,>,[,]
 set clipboard=unnamed,unnamedplus
+set guifont
 set tags=./tags
+
+if &compatible
+  set nocompatible
+endif
+" display filepath of current file
 
 " config for clipboard
 nnoremap <Space>d "*dd
@@ -33,7 +38,7 @@ nnoremap <Space>y "*yy
 vnoremap <Space>y "*yy
 nnoremap <Space>p "*p
 vnoremap <Space>p "*p
-nnoremap <CR> i<Return><Esc>^k
+
 inoremap <BS> <Nop>
 inoremap <Left> <Nop>
 inoremap <Right> <Nop>
@@ -53,9 +58,9 @@ inoremap [ []<ESCi
 inoremap [<Enter> []<Left><CR><ESC><S-o>
 
 nnoremap <space>. :<c-u>tabedit $MYVIMRC<CR>
-
 let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+
 if !isdirectory(s:dein_repo_dir)
   execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
 endif
@@ -82,6 +87,8 @@ endif
 
 " jedi-vim
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" endline
 
 " colorscheme
 colorscheme badwolf
