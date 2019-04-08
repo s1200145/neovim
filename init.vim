@@ -53,18 +53,21 @@ inoremap [ []<ESCi
 inoremap [<Enter> []<Left><CR><ESC><S-o>
 
 nnoremap <space>. :<c-u>tabedit $MYVIMRC<CR>
+if &compatible
+   set nocompatible
+endif
 
 if has('unix')
+   echo "unix"
    let s:dein_dir = expand('~/.cache/dein')
    let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
    let s:toml = '~/.config/dein/.dein.toml'
    let s:lazy_toml = '~/.config/dein/.dein_lazy.toml'
 elseif has('win64')
-   set shellslash
-   let s:dein_dir = expand('C:Users/taku/.nvim/dein/')
-   let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-   let s:toml = 'C:Users/taku/.nvim/conf/.dain.toml'
-   let s:lazy_toml = 'C:Users/taku/.nvim/conf/.dain_lazy.toml'
+   let s:dein_dir = expand('C:\Users\taku\.cache\dein')
+   let s:dein_repo_dir = s:dein_dir . '\repos\github.com\Shougo\dein.vim'
+   let s:toml = 'C:\Users\taku\.config\dein\.dein.toml'
+   let s:lazy_toml = 'C:\Users\taku\.config\dein\.dein_lazy.toml'
 endif
 if !isdirectory(s:dein_repo_dir)
    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir

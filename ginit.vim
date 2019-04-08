@@ -60,10 +60,10 @@ if has('unix')
    let s:lazy_toml = '~/.config/dein/.dein_lazy.toml'
 elseif has('win64')
    set shellslash
-   let s:dein_dir = expand('C:Users/taku/.nvim/dein/')
+   let s:dein_dir = expand('C:/Userstaku/.nvim/dein')
    let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-   let s:toml = 'C:Users/taku/.nvim/conf/.dain.toml'
-   let s:lazy_toml = 'C:Users/taku/.nvim/conf/.dain_lazy.toml'
+   let s:toml = 'C:/Users/taku/.config/.dein.toml'
+   let s:lazy_toml = 'C:/Users/taku/.config/.dein_lazy.toml'
 endif
 if !isdirectory(s:dein_repo_dir)
    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
