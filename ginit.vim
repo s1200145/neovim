@@ -3,8 +3,8 @@ filetype plugin indent off
 
 set expandtab
 set relativenumber
-set tabstop=3
-set shiftwidth=3
+set tabstop=4
+set shiftwidth=4
 set autoindent
 set autoread
 set virtualedit=block
@@ -23,8 +23,12 @@ set cursorline
 set cursorcolumn
 set whichwrap=b,s,h,l,<,>,[,]
 set clipboard=unnamed,unnamedplus
-set guifont
 set tags=./tags
+
+if has('win64')
+    GuiFont! Ricty\ Diminished:h12
+endif
+
 
 " config for clipboard
 nnoremap <Space>d "*dd
@@ -53,6 +57,8 @@ inoremap [ []<ESCi
 inoremap [<Enter> []<Left><CR><ESC><S-o>
 
 nnoremap <space>. :<c-u>tabedit $MYVIMRC<CR>
+nmap <Esc><Esc> :nohlsearch<CR><Esc>
+
 if has('unix')
    let s:dein_dir = expand('~/.cache/dein')
    let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
@@ -60,10 +66,10 @@ if has('unix')
    let s:lazy_toml = '~/.config/dein/.dein_lazy.toml'
 elseif has('win64')
    set shellslash
-   let s:dein_dir = expand('C:/Userstaku/.nvim/dein')
+   let s:dein_dir = expand('C:/Users/taku/.cache/dein')
    let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-   let s:toml = 'C:/Users/taku/.config/.dein.toml'
-   let s:lazy_toml = 'C:/Users/taku/.config/.dein_lazy.toml'
+   let s:toml = 'C:/Users/taku/.config/dein/.dein.toml'
+   let s:lazy_toml = 'C:/Users/taku/.config/dein/.dein_lazy.toml'
 endif
 if !isdirectory(s:dein_repo_dir)
    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
@@ -86,21 +92,8 @@ if dein#check_install()
    call dein#install()
 endif
 
-" jedi-vim
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-
-" endline
-
 " colorscheme
 colorscheme badwolf
-
-" highlight Normal ctermfg=White ctermbg=Black
-highlight CursorLine term=underline cterm=underline ctermbg=239
-highlight CursorColumn ctermbg=239
-
-" highlight Normal guifg=White guibg=Black
-highlight CursorLine gui=underline guibg=239
-highlight CursorColumn guibg=239
 
 filetype plugin indent on
 syntax enable
