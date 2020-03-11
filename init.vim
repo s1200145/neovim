@@ -5,8 +5,8 @@ filetype plugin indent off
 set expandtab
 set number
 set relativenumber
-set tabstop=3
-set shiftwidth=3
+set tabstop=4
+set shiftwidth=4
 set autoindent
 set autoread
 set virtualedit=block
@@ -33,7 +33,7 @@ nnoremap <Space>y "*yy
 vnoremap <Space>y "*yy
 nnoremap <Space>p "*p
 vnoremap <Space>p "*p
-nnoremap <CR> i<Return><Esc>^k
+nnoremap <CR> a<Return><Esc>^k
 inoremap <BS> <Nop>
 inoremap <Left> <Nop>
 inoremap <Right> <Nop>
@@ -115,3 +115,7 @@ set encoding=utf-8
 set fileencodings=utf-8
 set fileformats=unix,dos,mac
 
+highlight Normal ctermbg=NONE guibg=NONE
+highlight NonText ctermbg=NONE guibg=NONE
+highlight SpecialKey ctermbg=NONE guibg=NONE
+highlight EndOfBuffer ctermbg=NONE guibg=NONE

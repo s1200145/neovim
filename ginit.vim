@@ -15,6 +15,7 @@ set hlsearch
 set background=dark
 set hidden
 set list
+set showtabline=0
 set showmatch
 set ruler
 set laststatus=2
@@ -49,15 +50,8 @@ noremap <Right> <Nop>
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 
-inoremap { {}<LefT>
-inoremap {<Enter> {}<Left><CR><ESC><S-o>
-inoremap ( ()<ESCi
-inoremap (<Enter> ()<Left><CR><ESC><S-o>
-inoremap [ []<ESCi
-inoremap [<Enter> []<Left><CR><ESC><S-o>
-
 nnoremap <space>. :<c-u>tabedit $MYVIMRC<CR>
-nmap <Esc><Esc> :nohlsearch<CR><Esc>
+nmap <Esc><Esc> :nohlsearch<CR><ESC>
 
 if has('unix')
    let s:dein_dir = expand('~/.cache/dein')
@@ -107,3 +101,7 @@ set encoding=utf-8
 set fileencodings=utf-8
 set fileformats=unix,dos,mac
 
+highlight Normal ctermbg=NONE guibg=NONE
+highlight NonText ctermbg=NONE guibg=NONE
+highlight SpecialKey ctermbg=NONE guibg=NONE
+highlight EndOfBuffer ctermbg=NONE guibg=NONE
