@@ -34,16 +34,6 @@ vnoremap <Space>y "*yy
 nnoremap <Space>p "*p
 vnoremap <Space>p "*p
 nnoremap <CR> a<Return><Esc>^k
-inoremap <BS> <Nop>
-inoremap <Left> <Nop>
-inoremap <Right> <Nop>
-inoremap <Up> <Nop>
-inoremap <Down> <Nop>
-noremap <BS> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
-noremap <Up> <Nop>
-noremap <Down> <Nop>
 
 inoremap { {}<LefT>
 inoremap {<Enter> {}<Left><CR><ESC><S-o>
@@ -51,6 +41,12 @@ inoremap ( ()<ESCi
 inoremap (<Enter> ()<Left><CR><ESC><S-o>
 inoremap [ []<ESCi
 inoremap [<Enter> []<Left><CR><ESC><S-o>
+
+inoremap <BS> <Nop>
+inoremap <Left> <Nop>
+inoremap <Right> <Nop>
+inoremap <Up> <Nop>
+inoremap <Down> <Nop>
 
 nnoremap <space>. :<c-u>tabedit $MYVIMRC<CR>
 if &compatible

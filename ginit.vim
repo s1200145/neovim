@@ -39,19 +39,15 @@ vnoremap <Space>y "*yy
 nnoremap <Space>p "*p
 vnoremap <Space>p "*p
 
+
+nnoremap <space>. :<c-u>tabedit $MYVIMRC<CR>
+nmap <Esc><Esc> :nohlsearch<CR><ESC>
+
 inoremap <BS> <Nop>
 inoremap <Left> <Nop>
 inoremap <Right> <Nop>
 inoremap <Up> <Nop>
 inoremap <Down> <Nop>
-noremap <BS> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-
-nnoremap <space>. :<c-u>tabedit $MYVIMRC<CR>
-nmap <Esc><Esc> :nohlsearch<CR><ESC>
 
 if has('unix')
    let s:dein_dir = expand('~/.cache/dein')
